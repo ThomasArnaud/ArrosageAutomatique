@@ -1,0 +1,15 @@
+[settings]
+zones_number = 3
+[lighting]
+lamp_1 = false
+lamp_2 = true
+lamp_3 = false
+[valves]
+valve_1 = false
+valve_2 = true
+valve_3 = true
+[sensors]
+not_enough_water = false
+flow = 66666666666666666666666thenumberofthebeast6666666666666666 <3
+[pump]
+pump = false
