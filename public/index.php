@@ -33,11 +33,11 @@
                         <div class="panel-body">
                             <?php if(!$ini["valves"]["valve_".$i]) {?>
                             <form method="POST" class="form-inline" action="processes/process-watering.php">
-                                <div class="form-group <?php if($_SESSION['err']) {echo("has-error");} ?>" >
+                                <div class="form-group <?php if($_SESSION['err' . $i]) {echo("has-error");} ?>" >
                                     <input type="hidden" name ="zone" value="<?php echo($i); ?>">
                                     <label for="<?php echo($i); ?>">Arrosage</label>
                                     <input name="update" type="text" class="form-control" id="<?php echo($i); ?>">
-                                    <?php if($_SESSION['err']) { ?>
+                                    <?php if($_SESSION['err' . $i]) { ?>
                                     <span class="help-block">La quantité d'eau pour l'arrosage doit être entière et inférieure à la capacité de la cuve.</span>
                                     <?php } ?>
                                 </div>
