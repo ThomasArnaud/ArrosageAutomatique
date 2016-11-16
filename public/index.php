@@ -37,13 +37,13 @@
                                     <input type="hidden" name ="zone" value="<?php echo($i); ?>">
                                     <label for="<?php echo($i); ?>">Arrosage</label>
                                     <input name="update" type="text" class="form-control" id="<?php echo($i); ?>">
-                                    <?php if(isset($_SESSION['err' . $i]) && $_SESSION['err' . $i]) { ?>
-                                    <span class="help-block">La quantité d'eau pour l'arrosage doit être entière et inférieure à la capacité de la cuve.</span>
-                                    <?php } ?>
                                 </div>
                                 <button type="submit" class="btn btn-success">
                                     Allumer
                                 </button>
+                                <?php if(isset($_SESSION['err' . $i]) && $_SESSION['err' . $i]) { ?>
+                                    <span class="help-block">La quantité d'eau pour l'arrosage doit être entière et inférieure à la capacité de la cuve.</span>
+                                <?php } ?>
                             </form>
                             <?php } else {?>
                                 <p>Arrosage en fonctionnement</p>
