@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,30 +32,28 @@
                         <div class="panel-heading">Zone <?php echo($i); ?></div>
                         <div class="panel-body">
                             <?php if(!$ini["valves"]["valve_".$i]) {?>
-                            <form method="POST" class="form-inline">
-                                <div class="form-group">
-                                    <label for="arrosage<?php echo($i); ?>">Arrosage</label>
-                                    <input type="text" class="form-control" id="arrosage<?php echo($i); ?>">
+                            <form method="POST" class="form-inline" action="processes/process-watering.php">
+                                <div class="form-group <?php if($_SESSION['err']) {echo("has-error");} ?>" >
+                                    <input type="hidden" name ="zone" value="<?php echo($i); ?>">
+                                    <label for="<?php echo($i); ?>">Arrosage</label>
+                                    <input name="update" type="text" class="form-control" id="<?php echo($i); ?>">
+                                    <?php if($_SESSION['err']) { ?>
+                                    <span class="help-block">La quantité d'eau pour l'arrosage doit être entière et inférieure à la capacité de la cuve.</span>
+                                    <?php } ?>
                                 </div>
                                 <button type="submit" class="btn btn-success">
                                     Allumer
                                 </button>
                             </form>
                             <?php } else {?>
-                                <form method="POST" class="form-inline">
-                                    <div class="form-group">
-                                        <label for="arrosage<?php echo($i); ?>">Arrosage</label>
-                                        <input type="hidden" class="form-control" id="arrosage<?php echo($i); ?>">
-                                    </div>
-                                    En train d'arroser
-                                </form>
+                                <p>Arrosage en fonctionnement</p>
                             <?php }?>
-                            <form method="POST" class="form-inline">
+                            <form method="POST" class="form-inline" action="processes/process-lamp.php">
                                 <div class="form-group">
                                     <label for="lampe<?php echo($i); ?>">Éclairage</label>
-                                    <input type="hidden" class="form-control" id="lampe<?php echo($i); ?>">
+                                    <input type="hidden" name ="zone" value="<?php echo($i); ?>">
                                 </div>
-                                <button type="submit" class="btn <?php echo($ini["lighting"]["lamp_".$i] ? "btn-danger" : "btn-success"); ?>">
+                                <button name ="update" type="submit" class="btn <?php echo($ini["lighting"]["lamp_".$i] ? "btn-danger" : "btn-success"); ?>" value="<?php echo($ini["lighting"]["lamp_".$i]); ?>">
                                     <?php echo($ini["lighting"]["lamp_".$i] ? "Éteindre" : "Allumer"); ?>
                                 </button>
                             </form>
