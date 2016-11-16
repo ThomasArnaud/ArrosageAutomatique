@@ -24,8 +24,8 @@
     </nav>
 
     <?php
-        if (file_exists(__DIR__ . "../data/automaton.ini")) {
-            $ini = parse_ini_file( "../data/ini.txt", true);
+        if (file_exists(__DIR__ . "/../data/automaton.ini")) {
+            $ini = parse_ini_file(__DIR__ . "/../data/automaton.ini", true);
             for( $i = 1; $i <= $ini["settings"]["zones_number"]; $i++ ) { ?>
                 <div class="container">
                     <div class="panel panel-default">
@@ -33,11 +33,11 @@
                         <div class="panel-body">
                             <?php if(!$ini["valves"]["valve_".$i]) {?>
                             <form method="POST" class="form-inline" action="processes/process-watering.php">
-                                <div class="form-group <?php if($_SESSION['err' . $i]) {echo("has-error");} ?>" >
+                                <div class="form-group <?php if(isset($_SESSION['err' . $i]) && $_SESSION['err' . $i]) {echo("has-error");} ?>" >
                                     <input type="hidden" name ="zone" value="<?php echo($i); ?>">
                                     <label for="<?php echo($i); ?>">Arrosage</label>
                                     <input name="update" type="text" class="form-control" id="<?php echo($i); ?>">
-                                    <?php if($_SESSION['err' . $i]) { ?>
+                                    <?php if(isset($_SESSION['err' . $i]) && $_SESSION['err' . $i]) { ?>
                                     <span class="help-block">La quantité d'eau pour l'arrosage doit être entière et inférieure à la capacité de la cuve.</span>
                                     <?php } ?>
                                 </div>
