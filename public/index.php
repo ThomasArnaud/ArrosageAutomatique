@@ -24,7 +24,7 @@
     </nav>
 
     <?php
-        if (file_exists("../data/ini.txt")) {
+        if (file_exists(__DIR__ . "../data/automaton.ini")) {
             $ini = parse_ini_file( "../data/ini.txt", true);
             for( $i = 1; $i <= $ini["settings"]["zones_number"]; $i++ ) { ?>
                 <div class="container">
